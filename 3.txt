@@ -1,0 +1,81 @@
+Ausing System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleAph_h3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Person kisi = new Person();
+            kisi.SetName("Ayşe");
+            kisi.Greet();
+
+            Student ogr = new Student();
+            ogr.SetName("Fatma");
+            ogr.SetAge(20);
+            ogr.Greet();
+            ogr.ShowAge();
+
+            Professor ogrt = new Professor();
+            ogrt.SetName("Ahmet");
+            ogrt.SetAge(40);
+            ogrt.Greet();
+            ogrt.Explain();
+           
+            Console.ReadKey();
+        }
+    }
+
+    class Person
+    {
+        protected int age;
+        protected string Name="";
+        public virtual void Greet()
+        {
+            Console.WriteLine("Merhaba! Ben {0}", Name);
+        }
+
+        public void SetAge(int age)
+        {
+            this.age = age;
+        }
+
+        public void SetName(string Name)
+        {
+            this.Name = Name;
+        }
+
+                
+    }
+
+    class Student:Person
+    {
+        public void Study()
+        {
+            Console.WriteLine("\t Çalışıyorum.");
+        }
+
+        public void ShowAge()
+        {
+            Console.WriteLine("\t Ben {0} yaşındayım.",age);
+        }
+    }
+    class Professor:Person
+    {
+        public void Explain()
+        {
+            Console.WriteLine("\t Açıklıyorum.");
+        }
+
+        public override void Greet()
+        {
+            base.Greet();
+            Console.WriteLine("\t Öğrenciyim.");
+        }
+    }
+}

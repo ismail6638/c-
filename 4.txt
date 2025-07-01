@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleAph_h3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            PhotoBook pb1 = new PhotoBook();
+            pb1.WriteNumberPages();
+
+            PhotoBook pb2 = new PhotoBook(24);
+            pb2.WriteNumberPages();
+
+            BigPhotoBook bpb1 = new BigPhotoBook();
+            bpb1.WriteNumberPages();
+            
+           
+            Console.ReadKey();
+        }
+
+
+        class PhotoBook
+        {
+            protected int numPages;
+
+            public PhotoBook()
+            {
+                numPages = 16;
+            }
+
+            public PhotoBook(int pages)
+            {
+                numPages = pages;
+            }
+            protected  int GetNumberPages()
+            {
+                return numPages;
+            }
+
+            public void WriteNumberPages()
+            {
+                Console.WriteLine("Bu albümün sayfa sayısı : {0}",GetNumberPages());
+            }
+        }
+
+        class BigPhotoBook:PhotoBook
+        {
+            public BigPhotoBook()
+            {
+                numPages = 64;
+
+                
+            }
+
+            
+        }
+    }
+    
+}

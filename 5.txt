@@ -1,0 +1,109 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleAph_h3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int toplam = 3;
+            Person[] kisiler = new Person[toplam];
+
+            //Teacher oluşturuluyor
+            kisiler[0] = new Professor("ahmet");
+
+            //Students oluşturuluyor
+            for (int i = 1; i < toplam; i++)
+            {
+                Console.Write("Öğrenci ismi giriniz : ");
+                kisiler[i] = new Student(Console.ReadLine());
+            }
+
+            for (int i = 0; i < toplam; i++)
+            {
+                //öncelikle selamlıyor
+                kisiler[i].Greet();
+
+                //sonra görevini açıklıyor
+                if (i == 0)
+                    ((Professor)kisiler[i]).Explain();
+                else
+                    ((Student)kisiler[i]).Study();
+            }
+
+
+
+            Console.ReadKey();
+        }
+    }
+
+    class Person
+    {
+        protected int age;
+        protected string Name = "";
+
+        public Person(string name)
+        {
+            this.Name = name;
+        }
+        public virtual void Greet()
+        {
+            Console.WriteLine("Merhaba! Ben {0}", Name);
+        }
+
+        public void SetAge(int age)
+        {
+            this.age = age;
+        }
+
+       
+
+
+    }
+
+    class Student : Person
+    {
+
+        public Student(string name):base(name)
+        {
+            Name = name;
+        }
+        public void Study()
+        {
+            Console.WriteLine("\t Ders çalışıyorum.");
+        }
+
+        public void ShowAge()
+        {
+            Console.WriteLine("\t Ben {0} yaşındayım.", age);
+        }
+
+        public override void Greet()
+        {
+            base.Greet();
+            Console.WriteLine("\t Ben öğrenciyim.");
+        }
+
+    }
+    class Professor : Person
+    {
+        public Professor(string name):base(name)
+        {
+            Name = name;
+        }
+        public void Explain()
+        {
+            Console.WriteLine("\t Açıklıyorum.");
+        }
+
+        public override void Greet()
+        {
+            base.Greet();
+            Console.WriteLine("\t Öğretmen olarak görev yapıyorum.");
+        }
+    }
+}
