@@ -1,71 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ConsoleApp1
-{
-    class Ev
-    {
-        int kapiNo;
-        string sokakAdi;
-        public static string Sehir = "Zonguldak";
-        public int kapiNumarasi
-        {
-            get { return kapiNo; }
-            set { kapiNo = value; }
-        }
-
-        public string _SokakAdi
-        {
-            get { return sokakAdi; }
-            set { sokakAdi = value; }
-        }
-
-        public Ev()
-        {
-
-        }
-
-        public Ev(int kapiNo, string sokakAdi)
-        {
-            this.kapiNo = kapiNo;
-            this.sokakAdi = sokakAdi;
+int parola = 1234;
             
-        }
+            Console.Write("şifre giriniz : ");
+            int girilenSifre = Convert.ToInt32(Console.ReadLine());
 
-        public void BilgileriYazdir()
-        {
-            //Console.WriteLine("Kapı Numarası :"+kapiNo);
-            //Console.WriteLine("Sokak Adı :" + sokakAdi);
-           
-
-            Console.WriteLine("Adres : {0} Sokağı No : {1}, {2}",sokakAdi,kapiNo,Sehir);
-        }
-
-    }
-
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Ev ilkEv = new Ev(67, "Uzun Mehmet");
-            ilkEv.BilgileriYazdir();
-
-            ilkEv = new Ev(55, "Atatürk");
-            ilkEv.kapiNumarasi = 56;
-            ilkEv.BilgileriYazdir();
-
-            ilkEv = new Ev();
-            ilkEv._SokakAdi ="Dar Sokak" ;
-            ilkEv.kapiNumarasi = 55;
-            Ev.Sehir = "Bartın";
-            ilkEv.BilgileriYazdir();
-
-            ilkEv = new Ev();
-
-
-        }
-    }
-}
+            if (girilenSifre.Equals(parola))
+                Console.WriteLine("şifre doğru \a");
+            else
+                Console.WriteLine("şifre yanlış");

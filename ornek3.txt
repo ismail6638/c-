@@ -1,125 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+Console.Write("sayı giriniz : ");
+            int ilkSayi = Convert.ToInt32(Console.ReadLine());
+            Console.Write("sayı giriniz : ");
+            int ikinciSayi = Convert.ToInt32(Console.ReadLine());
 
-namespace ConsoleApp1
-{
-    class Ev
-    {
-        private int kapiNo;
-        protected string sokakAdi;
-        public static string Sehir = "Zonguldak";
-        public int kapiNumarasi
-        {
-            get { return kapiNo; }
-            set { kapiNo = value; }
-        }
-
-        public string _SokakAdi
-        {
-            get { return sokakAdi; }
-            set { sokakAdi = value; }
-        }
-
-        public Ev()
-        {
+            if (ilkSayi>ikinciSayi)
+                Console.WriteLine(" {0} sayısı {1}  sayısından büyüktür.",ilkSayi,ikinciSayi);
+            else if (ikinciSayi > ilkSayi)
+                Console.WriteLine(" {0} sayısı {1}  sayısından büyüktür.", ikinciSayi, ilkSayi);
+            else
+                Console.WriteLine(" {0} sayısı {1}  sayısına eşittir.", ikinciSayi, ilkSayi);
 
         }
-
-        public Ev(int kapiNo, string sokakAdi)
-        {
-            this.kapiNo = kapiNo;
-            this.sokakAdi = sokakAdi;
-            
-        }
-
-        public virtual void BilgileriYazdir()
-        {
-            //Console.WriteLine("Kapı Numarası :"+kapiNo);
-            //Console.WriteLine("Sokak Adı :" + sokakAdi);
-           
-            Console.WriteLine("Adres : {0} Sokağı No : {1}, {2}",sokakAdi,kapiNo,Sehir);
-        }
-
-        
-
-    }
-
-
-    class YazlikEv:Ev
-    {
-        public int havuzAlani;
-        public int bahceAlani;
-        public string deniz;
-
-        public override void  BilgileriYazdir()
-        {
-            Console.WriteLine("--Yazlık Ev : Bahçe Alanı {0} m2 , Havuz Alanı {1} m2, Deniz {2}",bahceAlani,havuzAlani,deniz);
-            base.BilgileriYazdir(); // üst sınıftaki fonksiyona erişmek için base sözcüğü kullanıldı.
-        }
-    }
-
-
-    class DagEvi : Ev
-    {
-        public int rakim;
-        public int kulubeSayisi;
-
-
-        public override void BilgileriYazdir()
-        {
-            Console.WriteLine("--Dağ Evi : Yükseklik {0} m , Kulübe Sayısı {1} ", rakim, kulubeSayisi);
-            base.BilgileriYazdir(); // üst sınıftaki fonksiyona erişmek için base sözcüğü kullanıldı.
-        }
-
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Ev ilkEv = new Ev(67, "Uzun Mehmet");
-            ilkEv.BilgileriYazdir();
-
-            ilkEv = new Ev(55, "Atatürk");
-            ilkEv.kapiNumarasi = 56;
-            ilkEv.BilgileriYazdir();
-
-            ilkEv = new Ev();
-            ilkEv._SokakAdi ="Dar Sokak" ;
-            ilkEv.kapiNumarasi = 55;
-            Ev.Sehir = "Bartın";
-            ilkEv.BilgileriYazdir();
-
-            YazlikEv ikinciEv = new YazlikEv();
-
-            ikinciEv.bahceAlani = 500;
-            ikinciEv.havuzAlani = 20;
-            ikinciEv.deniz = "Karadeniz";
-            ikinciEv._SokakAdi = "Menekşe";
-            ikinciEv.kapiNumarasi = 10;
-            ikinciEv.BilgileriYazdir();
-
-            DagEvi d1 = new DagEvi();
-            d1._SokakAdi = "Kartalkaya";
-            d1.kapiNumarasi = 1071;
-            d1.kulubeSayisi = 2;
-            d1.rakim = 1500;
-            d1.BilgileriYazdir();
-
-            //Polimorfizm - Çok biçimlilik
-            Ev ucuncuEv = new YazlikEv();
-
-            ucuncuEv = new Ev();
-            ucuncuEv = new DagEvi();
-
-            // EV
-            //  Yazlık EV
-            //  Dağ Evi
-
-
-
-        }
-    }
-}
