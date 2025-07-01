@@ -1,0 +1,9 @@
+int parola = 1234;
+            
+            Console.Write("şifre giriniz : ");
+            int girilenSifre = Convert.ToInt32(Console.ReadLine());
+
+            if (girilenSifre.Equals(parola))
+                Console.WriteLine("şifre doğru \a");
+            else
+                Console.WriteLine("şifre yanlış");

@@ -1,0 +1,13 @@
+Console.Write("sayı giriniz : ");
+            int ilkSayi = Convert.ToInt32(Console.ReadLine());
+            Console.Write("sayı giriniz : ");
+            int ikinciSayi = Convert.ToInt32(Console.ReadLine());
+
+            if (ilkSayi>ikinciSayi)
+                Console.WriteLine(" {0} sayısı {1}  sayısından büyüktür.",ilkSayi,ikinciSayi);
+            else if (ikinciSayi > ilkSayi)
+                Console.WriteLine(" {0} sayısı {1}  sayısından büyüktür.", ikinciSayi, ilkSayi);
+            else
+                Console.WriteLine(" {0} sayısı {1}  sayısına eşittir.", ikinciSayi, ilkSayi);
+
+        }

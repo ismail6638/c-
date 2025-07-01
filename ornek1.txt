@@ -1,0 +1,16 @@
+int ilkSayi;
+            int ikinciSayi;
+
+            Console.Write("ilk sayıyı giriniz : ");
+            ilkSayi = Convert.ToInt32(Console.ReadLine());
+            Console.Write("ikinci sayıyı giriniz : ");
+            ikinciSayi = Convert.ToInt32(Console.ReadLine());
+
+            object toplam = ilkSayi + ikinciSayi;
+
+            int toplam2 = (int)toplam; //type casting
+
+            //Burada iki sayının toplama işlemi yazdırılıyor.
+            //Console.WriteLine("toplam :"+Convert.ToInt32(ilkSayi+ikinciSayi)+" dır. ");
+
+            Console.WriteLine("\t object değişkeni ile yapılan toplama : \a"+toplam);
