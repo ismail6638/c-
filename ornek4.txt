@@ -1,37 +1,145 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApp1
+{
+    class Ev
+    {
+        private int kapiNo;
+        protected string sokakAdi;
+        public static string Sehir = "Zonguldak";
+
+        public int havuzAlani;
+        public int bahceAlani;
+        public string deniz;
+
+        public int rakim;
+        public int kulubeSayisi;
+        public int kapiNumarasi
+        {
+            get { return kapiNo; }
+            set { kapiNo = value; }
+        }
+
+        public string _SokakAdi
+        {
+            get { return sokakAdi; }
+            set { sokakAdi = value; }
+        }
+
+        public Ev()
+        {
+
+        }
+
+        public Ev(int kapiNo, string sokakAdi)
+        {
+            this.kapiNo = kapiNo;
+            this.sokakAdi = sokakAdi;
+            
+        }
+
+        public virtual void BilgileriYazdir()
+        {
+            //Console.WriteLine("Kapı Numarası :"+kapiNo);
+            //Console.WriteLine("Sokak Adı :" + sokakAdi);
+           
+            Console.WriteLine("Adres : {0} Sokağı No : {1}, {2}",sokakAdi,kapiNo,Sehir);
+        }
+
+        
+
+    }
+
+
+    class YazlikEv:Ev
+    {
+        
+
+        public override void  BilgileriYazdir()
+        {
+            Console.WriteLine("--Yazlık Ev : Bahçe Alanı {0} m2 , Havuz Alanı {1} m2, Deniz {2}",bahceAlani,havuzAlani,deniz);
+            base.BilgileriYazdir(); // üst sınıftaki fonksiyona erişmek için base sözcüğü kullanıldı.
+        }
+    }
+
+
+    class DagEvi : Ev
+    {
+        
+
+
+
+        public override void BilgileriYazdir()
+        {
+            Console.WriteLine("--Dağ Evi : Yükseklik {0} m , Kulübe Sayısı {1} ", rakim, kulubeSayisi);
+            base.BilgileriYazdir(); // üst sınıftaki fonksiyona erişmek için base sözcüğü kullanıldı.
+        }
+
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Polimorfizm - Çok biçimlilik
+            Ev evlerim = null; //new YazlikEv();
+
+
+            evlerim = new Ev(67, "Uzun Mehmet");
+            evlerim.BilgileriYazdir();
+
+            evlerim = new Ev(55, "Atatürk");
+            evlerim.kapiNumarasi = 56;
+            evlerim.BilgileriYazdir();
+
+            evlerim = new Ev();
+            evlerim._SokakAdi ="Dar Sokak" ;
+            evlerim.kapiNumarasi = 55;
+            Ev.Sehir = "Bartın";
+            evlerim.BilgileriYazdir();
+
+            evlerim = new YazlikEv();
+
+            evlerim.bahceAlani = 500;
+            evlerim.havuzAlani = 20;
+            evlerim.deniz = "Karadeniz";
+            evlerim._SokakAdi = "Menekşe";
+            evlerim.kapiNumarasi = 10;
+            evlerim.BilgileriYazdir();
+
+            evlerim = new DagEvi();
+            evlerim._SokakAdi = "Kartalkaya";
+            evlerim.kapiNumarasi = 1071;
+            evlerim.kulubeSayisi = 2;
+            evlerim.rakim = 1500;
+            evlerim.BilgileriYazdir();
+
+
+            Console.WriteLine("ev için 1 yazlık ev için 2 dağ evi için 3 giriniz :");
+            int secim = Convert.ToInt32(Console.ReadLine());
+
+            if (secim == 1)
+                evlerim = new Ev();
+            else if (secim == 2)
+                evlerim = new YazlikEv();
+            else if (secim == 3)
+                evlerim = new DagEvi();
+
+
+            evlerim.BilgileriYazdir();
+
 
             
-            Console.Write(" ilk sayıyı giriniz : ");
-            int ilkSayi = Convert.ToInt32(Console.ReadLine());
-            Console.Write("ikinci sayıyı giriniz : ");
-            int ikinciSayi = Convert.ToInt32(Console.ReadLine());
-            double sonuc = 0;
 
-            Console.WriteLine("Toplam için 1, çıkarma için 2, çarpma için 3, bölme için 4  " );
-            Console.Write("Yapılacak işlemi seçiniz : ");
-            byte islem = Convert.ToByte(Console.ReadLine());
+            // EV
+            //  Yazlık EV
+            //  Dağ Evi
 
-            switch (islem)
-            {
-                case 1:
-                    sonuc = ikinciSayi + ilkSayi;
-                    break;
 
-                case 2:
-                    sonuc = ilkSayi - ikinciSayi;
-                    break;
 
-                case 3:
-                    sonuc = ilkSayi * ikinciSayi;
-                    break;
-
-                case 4:
-                    sonuc = (double)ilkSayi / ikinciSayi;
-                    break;
-
-                default:
-                    Console.WriteLine("Hatalı giriş");
-                    break;
-
-            }
-
-            Console.WriteLine("Sonuç : "+ sonuc );
+        }
+    }
+}

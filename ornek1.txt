@@ -1,16 +1,32 @@
-int ilkSayi;
-            int ikinciSayi;
+char[] harfler = { 'a', 'e', 'ı', 'i', 'o', 'ö', 'u', 'ü' };
+            string metin;
+            int sira=0;
 
-            Console.Write("ilk sayıyı giriniz : ");
-            ilkSayi = Convert.ToInt32(Console.ReadLine());
-            Console.Write("ikinci sayıyı giriniz : ");
-            ikinciSayi = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Metin giriniz : ");
+            metin = Console.ReadLine();
 
-            object toplam = ilkSayi + ikinciSayi;
 
-            int toplam2 = (int)toplam; //type casting
+            for (int i = 0; i < metin.Length; i++)
+            {
+                if (metin[i] == 'a')
+                {
+                    sira = i;
+                    break;
+                }
+                    
+                    
+            }
 
-            //Burada iki sayının toplama işlemi yazdırılıyor.
-            //Console.WriteLine("toplam :"+Convert.ToInt32(ilkSayi+ikinciSayi)+" dır. ");
 
-            Console.WriteLine("\t object değişkeni ile yapılan toplama : \a"+toplam);
+            Console.WriteLine("Girilen metin içerisinde ilk a karakteri {0}. sıradadır ",sira+1);
+
+            for (int i = metin.Length-1 ; i>= 0; i--)
+            {
+                if (metin[i] == 'a')
+                {
+                    sira = i;
+                    break;
+                }
+            }
+
+            Console.WriteLine("Girilen metin içerisinde son  a karakteri {0}. sıradadır ", sira + 1);
