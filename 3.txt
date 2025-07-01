@@ -1,81 +1,66 @@
-Ausing System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAph_h3
+namespace ConsoleApp2_h4
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Rectangle r1 = new Rectangle();
 
-            Person kisi = new Person();
-            kisi.SetName("Ayşe");
-            kisi.Greet();
+            r1.AlanHesapla(10, 20);
+            r1.CevreHesapla(10,20);
+            r1.KosegenHesapla(10, 20);
+            r1.GetColor();
 
-            Student ogr = new Student();
-            ogr.SetName("Fatma");
-            ogr.SetAge(20);
-            ogr.Greet();
-            ogr.ShowAge();
-
-            Professor ogrt = new Professor();
-            ogrt.SetName("Ahmet");
-            ogrt.SetAge(40);
-            ogrt.Greet();
-            ogrt.Explain();
-           
+            IPolygon r2 = new Rectangle();
+            r2.AlanHesapla(20,30);
+            r2.CevreHesapla(20, 30);
+            ((Rectangle)r2).KosegenHesapla(20, 30);
+            
+            
             Console.ReadKey();
         }
     }
 
-    class Person
+    class Rectangle : IPolygon,IColor
     {
-        protected int age;
-        protected string Name="";
-        public virtual void Greet()
+        public void KosegenHesapla(int a,int b)
         {
-            Console.WriteLine("Merhaba! Ben {0}", Name);
+            double kosegen = Math.Sqrt(a * a + b * b);
+            Console.WriteLine("Bu dörtgenin kosegeni :" + kosegen);
+        }
+        public void AlanHesapla(int a, int b)
+        {
+            int alan = a * b;
+            Console.WriteLine("Bu dörtgenin alanı :"+alan);
         }
 
-        public void SetAge(int age)
+        public void CevreHesapla(int a, int b)
         {
-            this.age = age;
+            int cevre = 2 * (a + b);
+            Console.WriteLine("Bu dörtgenin çevresi :" + cevre);
         }
 
-        public void SetName(string Name)
+        public void GetColor()
         {
-            this.Name = Name;
+            Console.WriteLine("Bu dörtgenin rengi Kırmızı");
         }
-
-                
     }
 
-    class Student:Person
+    interface IPolygon
     {
-        public void Study()
-        {
-            Console.WriteLine("\t Çalışıyorum.");
-        }
-
-        public void ShowAge()
-        {
-            Console.WriteLine("\t Ben {0} yaşındayım.",age);
-        }
+        void AlanHesapla(int a,int b);
+        void CevreHesapla(int a, int b);
     }
-    class Professor:Person
-    {
-        public void Explain()
-        {
-            Console.WriteLine("\t Açıklıyorum.");
-        }
 
-        public override void Greet()
-        {
-            base.Greet();
-            Console.WriteLine("\t Öğrenciyim.");
-        }
+
+    interface IColor
+    {
+        void GetColor();
     }
 }

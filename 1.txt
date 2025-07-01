@@ -4,39 +4,85 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAph_h3
+namespace ConsoleApp2_h4
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int toplam = 3;
+            Human h1;
 
-            Person[] kisiler = new Person[toplam];
+            h1 = new Manager();
+            h1.Age = 50;
+            h1.Name= "Ahmet";
 
-            for (int i = 0; i < toplam; i++)
-            {
-                Console.Write("Kişi Adı Giriniz :");
-                kisiler[i] = new Person();
-                kisiler[i].Name = Console.ReadLine();
-            }
+            ((Manager)h1).Yuzme();
 
-            for (int i = 0; i < toplam; i++)
-            {
-                Console.WriteLine(kisiler[i].ToString());
-            }
-
-            Console.ReadKey();
+            
         }
     }
 
-    class Person
+    class Work
+    {
+
+    }
+    abstract class Human
     {
         public string Name;
+        public int Age;
 
-        public override string ToString()
+        public abstract void Speak();
+    }
+
+    class Manager:Human, ISwimming, IFutbol, IBasketbol
+    {
+        string gorev;
+        string CalismaAlani;
+
+        public override void Speak()
         {
-            return "Merhaba benim adım " + Name;
+            Console.WriteLine("Merhaba dünya");
         }
+
+        public void Yuzme()
+        {
+            Console.WriteLine("ben yüzüyorum");
+        }
+
+        void IFutbol.MacYap()
+        {
+            Console.WriteLine("ben futbol maçı yapıyorum");
+        }
+
+        void IBasketbol.MacYap()
+        {
+            Console.WriteLine("ben basketball maçı yapıyorum");
+        }
+
+    }
+
+    interface ITennis
+    {
+
+    }
+
+    interface ISwimming
+    {
+        void Yuzme();
+        //private void DerineDal();
+  
+    }
+
+    interface IFutbol
+    {
+        void MacYap();
+
+    }
+
+
+    interface IBasketbol
+    {
+        void MacYap();
+
     }
 }

@@ -4,50 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAph_h3
+namespace ConsoleApp2_h4
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int toplam = 3;
+            Car bmw = new Car(0);
 
-            Person[] kisiler = new Person[toplam];
+            bmw.Drive();
 
-            for (int i = 0; i < toplam; i++)
-            {
-                Console.Write("Kişi Adı Giriniz :");
-                kisiler[i] = new Person(Console.ReadLine());
-                
-            }
+            bmw.Refuel(10);
 
-            for (int i = 0; i < toplam; i++)
-            {
-                Console.WriteLine(kisiler[i].ToString());
-            }
+            bmw.Drive();
+            bmw.Drive();
 
             Console.ReadKey();
         }
     }
 
-    class Person
+    class Car : IVehicle
     {
-        public string Name;
+        int fuel=0;
 
-        public Person(string Name)
+        public Car (int fuel)
         {
-            this.Name = Name;
+            this.fuel = fuel;
         }
-        public override string ToString()
+        public void Drive()
         {
-            return "Merhaba benim adım " + Name;
+            if (fuel > 0)
+            {
+                Console.WriteLine("Araba sürülüyor");
+                fuel -= 10;
+            }
+                
+            else
+                Console.WriteLine("Benzin yok!");
         }
 
-        //Yıkıcı fonksiyon
-        ~Person()
+        public bool Refuel(int miktar)
         {
-            Name = string.Empty;
+            this.fuel += miktar;
+            Console.WriteLine("{0} litre yakıt alındı !",miktar);
+            return true;
         }
+    }
+
+    interface IVehicle
+    {
+        void Drive();
+        bool Refuel(int miktar);
 
     }
 }

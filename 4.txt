@@ -4,61 +4,143 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAph_h3
+namespace ConsoleApp2_h4
 {
     class Program
     {
         static void Main(string[] args)
         {
-            PhotoBook pb1 = new PhotoBook();
-            pb1.WriteNumberPages();
 
-            PhotoBook pb2 = new PhotoBook(24);
-            pb2.WriteNumberPages();
+            Telefon tlf1 = new Telefon();
+            tlf1.AramaYap(112);
+            tlf1.KisaMesajGonder(123, "merhaba");
 
-            BigPhotoBook bpb1 = new BigPhotoBook();
-            bpb1.WriteNumberPages();
-            
-           
-            Console.ReadKey();
-        }
+            HtcDesire h1 = new HtcDesire();
+            h1.AramaYap(123);
+            h1.KisaMesajGonder(1234, "merhaba");
+            h1.JPGResimGonder();
+            h1.Mp4VideoGonder();
 
+            IPhone i14 = new IPhone();
+            i14.AramaYap(123);
+            i14.KisaMesajGonder(12345, "merhaba");
+            i14.GoruntuluAramaYap(1234567);
+            i14.KonumPaylas();
+            i14.ResimGonder();
+            i14.SiriAramasiYap("manzara resmi arıyorum");
 
-        class PhotoBook
-        {
-            protected int numPages;
+            IVivo t1 = new IPhone();
 
-            public PhotoBook()
+            t1 = new Telefon();
+
+            if (t1 is IApple)
             {
-                numPages = 16;
-            }
-
-            public PhotoBook(int pages)
-            {
-                numPages = pages;
-            }
-            protected  int GetNumberPages()
-            {
-                return numPages;
-            }
-
-            public void WriteNumberPages()
-            {
-                Console.WriteLine("Bu albümün sayfa sayısı : {0}",GetNumberPages());
-            }
-        }
-
-        class BigPhotoBook:PhotoBook
-        {
-            public BigPhotoBook()
-            {
-                numPages = 64;
-
+                ((IApple)t1).KonumPaylas();
                 
             }
 
-            
+            t1 = new HtcDesire();
+
+            if(t1 is IHtc)
+                ((IHtc)t1).Mp4VideoGonder();
+
+
+
+
+            Console.ReadKey();
         }
     }
-    
+
+    class Telefon : IVivo
+    {
+        public void AramaYap(int telefonNo)
+        {
+            Console.WriteLine("{0} aranıyor...",telefonNo);
+        }
+
+        public void KisaMesajGonder(int telefonNo, string mesaj)
+        {
+            Console.WriteLine("{0} numarasına mesaj gönderildi !", telefonNo);
+        }
+    }
+
+    class IPhone : IVivoNew, IApple
+    {
+        public void AramaYap(int telefonNo)
+        {
+            Console.WriteLine("{0} aranıyor...", telefonNo);
+        }
+
+        public void GoruntuluAramaYap(int telefonNo)
+        {
+            Console.WriteLine("{0} görüntülü aranıyor...", telefonNo);
+        }
+
+        public void KisaMesajGonder(int telefonNo, string mesaj)
+        {
+            Console.WriteLine("{0} numarasına mesaj gönderildi !", telefonNo);
+        }
+
+        public void KonumPaylas()
+        {
+            Console.WriteLine("Konum paylaşılıyor...");
+        }
+
+        public void ResimGonder()
+        {
+            Console.WriteLine("Resim gönderildi.");
+        }
+
+        public void SiriAramasiYap(string metin)
+        {
+            Console.WriteLine("{0} ifadesi aranıyor ...",metin);
+        }
+    }
+
+    class HtcDesire : IVivo, IHtc
+    {
+        public void AramaYap(int telefonNo)
+        {
+            Console.WriteLine("{0} aranıyor...", telefonNo);
+        }
+
+        public void JPGResimGonder()
+        {
+            Console.WriteLine("JPG resmi gönderildi !");
+        }
+
+        public void KisaMesajGonder(int telefonNo, string mesaj)
+        {
+            Console.WriteLine("{0} numarasına mesaj gönderildi !", telefonNo);
+        }
+
+        public void Mp4VideoGonder()
+        {
+            Console.WriteLine("MP4 video gönderildi !");
+        }
+    }
+    interface IVivo
+    {
+        void AramaYap(int telefonNo);
+        void KisaMesajGonder(int telefonNo, string mesaj);
+    }
+
+    interface IVivoNew : IVivo
+    {
+        void GoruntuluAramaYap(int telefonNo);
+        void ResimGonder();
+    }
+
+    interface IHtc
+    {
+        void Mp4VideoGonder();
+
+        void JPGResimGonder();
+    }
+
+    interface IApple
+    {
+        void SiriAramasiYap(string metin);
+        void KonumPaylas();
+    }
 }
